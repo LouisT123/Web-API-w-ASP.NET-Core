@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TodoAPI.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
