@@ -17,6 +17,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using System.IO;
 
 namespace TodoAPI
 {
@@ -53,15 +54,16 @@ namespace TodoAPI
                     },
                     License = new OpenApiLicense
                     {
-                    Name = "Use under LICX",
-                    Url = new Uri("https://example.com/license"),
+                        Name = "Use under LICX",
+                        Url = new Uri("https://example.com/license"),
                     }
                 });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = ConfigurationPath.Combine(AppContext.BaseDirectory, xmlFile);
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

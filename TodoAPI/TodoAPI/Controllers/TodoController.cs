@@ -60,35 +60,26 @@ namespace TodoAPI.Controllers
         }
 
         // PUT: api/Todo/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItem(long id, TodoItem item)
-        {
-            if (id != item.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(item).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        // DELETE: api/Todo/5
+        /// <summary>
+        /// Deletes a specific TodoItem.
+        /// </summary>
+        /// <param name="id"></param>        
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTodoItem(long id)
+        public IActionResult Delete(long id)
         {
-            var todoItem = await _context.TodoItems.FindAsync(id);
+            var todo = _context.TodoItems.Find(id);
 
-            if (todoItem == null)
+            if (todo == null)
             {
                 return NotFound();
             }
 
-            _context.TodoItems.Remove(todoItem);
-            await _context.SaveChangesAsync();
+            _context.TodoItems.Remove(todo);
+            _context.SaveChanges();
 
             return NoContent();
         }
+
+
     }
 }
