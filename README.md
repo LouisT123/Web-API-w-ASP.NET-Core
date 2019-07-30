@@ -1,2 +1,3 @@
 # Web-API-w-ASP.NET-Core
-Tutorial 
+Tutorial of
+Creating web api and implementing Swashbuckle
