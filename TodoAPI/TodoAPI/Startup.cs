@@ -69,6 +69,8 @@ namespace TodoAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseStaticFiles();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -79,6 +81,7 @@ namespace TodoAPI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseHttpsRedirection();
 
             //Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
@@ -89,12 +92,13 @@ namespace TodoAPI
             app.UseSwaggerUI(c =>
            {
                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-               c.RoutePrefix = string.Empty;
+               //c.RoutePrefix = string.Empty;
+           
            });
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseHttpsRedirection();
+            
             app.UseMvc();
         }
     }
